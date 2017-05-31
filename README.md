@@ -30,13 +30,13 @@ Note that values is a list of any kind of object.
 3) to retrieve the maximum value in the heap, use 
 
 ```python
-    print "MAX :", h.maximum
+    print "MAX :", h.maximum   # {'k': 27, 'v': 0}
 ```
 
 4) to retrieve the maximum value in the heap and extract it from the heap, use
 
 ```python
-    print "POP :", h.pop
+    print "POP :", h.pop        # prints {'k': 27, 'v': 0} and remove this element from the heap
 ```
 
 5) to change the weight of a element, use increase(element position, new weight value).
