@@ -5,7 +5,7 @@
  * All rights reserved.
  *
  * If you have questions about your rights to use or distribute this
- * software, please contact damacedo@dcc.ufmg.br.
+ * software, please contact h3dema@outlook.com.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
