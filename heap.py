@@ -313,4 +313,6 @@ if __name__ == "__main__":
     print "SIZE :", h.size,'\n'
 
     print "Poped   :", poped_keys
+    keys.extend([19,17])
     print "Original:",sorted(keys, reverse=True) # original keys sorted (two discrepancies: we inserted 19 and 17)
+    print "note: value ", v - 5, "changed to", v
