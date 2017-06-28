@@ -139,11 +139,14 @@ class MaxPriorityQueue(MaxHeap):
             :return max value in the heap
         """
         if len(self.heap) == 0:
-            raise Exception('heap is empty')
+            return None
+            #raise Exception('heap is empty')
         max = self.heap[0]
         self.heap[0] = self.heap[self.size-1]
+        self.heap.pop() # remove the last item
         self.heap_size -= 1
-        self.max_Heapify(0)
+        if self.heap_size > 0:
+            self.max_Heapify(0)
         return max
 
     def increase(self,i,new_weight):
@@ -164,20 +167,55 @@ class MaxPriorityQueue(MaxHeap):
         from sys import maxint
         self.append(v, -maxint)
         self.heap_size += 1
-        self.increase(self.heap_size, k)
+        self.increase(self.heap_size-1, k)
 
 
 if __name__ == "__main__":
     h = MaxPriorityQueue()
     h.build_heap(range(14), [27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0])
+    print "SIZE", h.size,'\n'
     print "HEAP: ", h.heap
     print "MAX :", h.maximum
+
     print "POP :", h.pop
     print "HEAP: ", h.heap
-    print "MAX :", h.maximum
-    h.increase(1, 18) # old: {'k': 16, 'v': 3}  new: {'k': 18, 'v': 3}
+    print "SIZE", h.size,'\n'
+
+    print "POP :", h.pop
     print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
+
+    print "MAX :", h.maximum
+    print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
+
+    h.increase(1, 18) # old: {'k': 9, 'v': 12}  new: {'k': 18, 'v': 12}
+    print "HEAP: ", h.heap
+    print "MAX :", h.maximum
+    print "SIZE", h.size,'\n'
+
+    print "h.add(1000, 19)"
     h.add(1000, 19)
     print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
+
+    print "h.add(1001, 18)"
     h.add(1001, 18)
     print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
+
+    # clean heap
+    for i in range(h.size-1):
+        print "POP :", h.pop
+        print "HEAP: ", h.heap
+        print "SIZE", h.size,'\n'
+
+    # pop last one
+    print "POP :", h.pop
+    print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
+
+    # try to pop an empty heap
+    print "POP :", h.pop
+    print "HEAP: ", h.heap
+    print "SIZE", h.size,'\n'
