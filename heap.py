@@ -42,15 +42,27 @@ This python module implements two classes:
                      you can use this class if you a heap that keeps that of a tuple
                      a value -> is an object that you want to retrieve from the heap
                      a key   -> is a weight that sorts the heap
+                     
+Reference: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein. 
+           Introduction to Algorithms. Third Edition. Chapter 6.                   
+                    
 """
 
 
 class MaxHeap(object):
-
+    """
+        this class implements a max heap, and performs some functions
+        * clear: resets the heap to an empty heap
+        * build_heap: constructs a heap for a list of values
+        * max_heapify: performs the MAX HEAPIFY, see section 6.2 from CLRS
+        * parent, left, right
+    """
     def __init__(self):
+        """initialize the heap internal variable"""
         self.__heap = []
 
     def clear(self):
+        """clears the heap"""
         self.__heap = []
 
     @property
@@ -122,6 +134,11 @@ class MaxHeap(object):
         __keys = [ "%i:%s" % (i, str(self.__heap[i]['k'])) for i in range(self.size)]
         return __keys
 
+    def reorder(self):
+        last = (self.size-1)/2
+        for i in range(last, -1, -1):
+            self.max_Heapify(i, self.size)
+
     def build_heap(self, values, keys):
         """
         this method get a list of values and a list of keys (weights) and builds a __heap with them
@@ -133,9 +150,19 @@ class MaxHeap(object):
         n = len(values)
         for i in range(n):
             self.append(weight=keys[i], value=values[i])
-        last = (self.size-1)/2
-        for i in range(last, -1, -1):
-            self.max_Heapify(i, self.size)
+        self.reorder()
+
+    def heapsort(self):
+        """ sorts the heap
+            after this method, the self.heap list is ordered in ascending order
+            so it is no longer a heap, it is a sorted array
+            to repair it, run self.reorder()
+        """
+        heap_size = self.size
+        for i in range(heap_size, 0, -1):
+            self.exchange(0,i)
+            heap_size -= 1
+            self.max_Heapify(0,heap_size)
 
 
 class MaxPriorityQueue(MaxHeap):
